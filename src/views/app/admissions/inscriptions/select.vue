@@ -137,6 +137,7 @@ export default {
         "apellidos",
         "convocatoria",
         "estado",
+        "valor",
         "actions",
       ],
       changeOrderBy: "",
