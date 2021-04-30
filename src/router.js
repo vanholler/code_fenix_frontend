@@ -9,13 +9,13 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: () => import(/* webpackChunkName: "home" */ "./views/home"),
-    // redirect: `${adminRoot}/piaf`,
+    component: () => import("./views/home"),
+    redirect: `${adminRoot}/dashboards`
   },
   {
     path: adminRoot,
-    component: () => import(/* webpackChunkName: "app" */ "./views/app"),
-    redirect: `${adminRoot}/piaf`,
+    component: () => import("./views/app"),
+    redirect: `${adminRoot}/dashboards`,
     meta: { loginRequired: true },
     /*
    define with Authorization :
@@ -23,33 +23,40 @@ const routes = [
    */
     children: [
       {
-        path: "piaf",
-        component: () =>
-          import(/* webpackChunkName: "piaf" */ "./views/app/piaf"),
-        redirect: `${adminRoot}/piaf/start`,
+        path: "dashboards",
+        component: () => import("./views/app/dashboards"),
+        redirect: `${adminRoot}/dashboards/start`,
         children: [
           {
-            path: 'start',
-            component: () => import(/* webpackChunkName: "piaf" */ './views/app/piaf/Start')
+            path: "start",
+            component: () => import("./views/app/dashboards/Start")
             // meta: { roles: [UserRole.Admin, UserRole.Editor] },
           }
         ]
       },
       {
-        path: "second-menu",
-        component: () =>
-          import(/* webpackChunkName: "second-menu" */ "./views/app/second-menu"),
-        redirect: `${adminRoot}/second-menu/second`,
+        path: "admissions",
+        component: () => import("./views/app/admissions"),
+        // redirect: `${adminRoot}/admissions/inscriptions`,
         children: [
-          { path: 'second', component: () => import(/* webpackChunkName: "piaf" */ './views/app/second-menu/Second') }
+          {
+            path: "inscriptions",
+            component: () => import("./views/app/admissions/inscriptions"),
+            redirect: `${adminRoot}/admissions/inscriptions/select`,
+            children: [
+              {
+                path: "select",
+                component: () =>
+                  import("./views/app/admissions/inscriptions/select")
+              },
+              {
+                path: "add",
+                component: () =>
+                  import("./views/app/admissions/inscriptions/add")
+              }
+            ]
+          }
         ]
-      },
-
-
-      {
-        path: "single",
-        component: () =>
-          import(/* webpackChunkName: "single" */ "./views/app/single")
       }
     ]
   },
@@ -81,20 +88,19 @@ const routes = [
         path: "reset-password",
         component: () =>
           import(/* webpackChunkName: "user" */ "./views/user/ResetPassword")
-      },
-
+      }
     ]
   },
   {
     path: "*",
-    component: () => import(/* webpackChunkName: "error" */ "./views/Error")
+    component: () => import("./views/Error")
   }
 ];
 
 const router = new VueRouter({
   linkActiveClass: "active",
   routes,
-  mode: "history",
+  mode: "history"
 });
 router.beforeEach(AuthGuard);
 export default router;

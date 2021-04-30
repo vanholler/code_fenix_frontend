@@ -6,12 +6,12 @@ const data = [
     id: "dashboards",
     icon: "iconsminds-shop",
     label: "menu.dashboards",
-    to: `${adminRoot}/piaf`,
+    to: `${adminRoot}/dashboards`,
     subs: [
       {
         icon: "simple-icon-paper-plane",
         label: "menu.start",
-        to: `${adminRoot}/piaf/start`
+        to: `${adminRoot}/dashboards/start`
         // roles: [UserRole.Admin, UserRole.Editor],
       }
     ]
@@ -59,12 +59,12 @@ const data = [
       },
       {
         icon: "simple-icon-paper-plane",
-        label: "menu.inscription",
+        label: "menu.inscriptions",
         to: `${adminRoot}/second-menu/second`
       },
       {
         icon: "simple-icon-paper-plane",
-        label: "menu.inscription",
+        label: "menu.inscriptions",
         to: `${adminRoot}/second-menu/second`
       }
     ]
@@ -72,13 +72,13 @@ const data = [
   {
     id: "admission ",
     icon: "iconsminds-chemical",
-    label: "menu.admission",
-    to: `${adminRoot}/second-menu`,
+    label: "menu.admissions",
+    to: `${adminRoot}/admissions/inscriptions`,
     subs: [
       {
         icon: "simple-icon-paper-plane",
-        label: "menu.inscription",
-        to: `${adminRoot}/second-menu/second`
+        label: "menu.inscriptions",
+        to: `${adminRoot}/admissions/inscriptions/select`
       }
     ]
   },
@@ -122,7 +122,7 @@ const data = [
     subs: [
       {
         icon: "simple-icon-paper-plane",
-        label: "menu.inscription",
+        label: "menu.inscriptions",
         to: `${adminRoot}/second-menu/second`
       }
     ]
